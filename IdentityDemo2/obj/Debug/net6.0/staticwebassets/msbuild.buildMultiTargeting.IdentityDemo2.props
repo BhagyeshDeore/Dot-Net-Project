@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\IdentityDemo2.props" />
+</Project>

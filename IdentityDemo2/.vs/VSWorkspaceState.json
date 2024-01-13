@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Areas",
+    "\\Areas\\Identity",
+    "\\Areas\\Identity\\Pages",
+    "\\Areas\\Identity\\Pages\\Account",
+    "\\Data",
+    "\\DTOs",
+    "\\Models",
+    "\\Views",
+    "\\Views\\Shared"
+  ],
+  "SelectedNode": "\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+  "PreviewInSolutionExplorer": false
+}
