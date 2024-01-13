@@ -14,6 +14,7 @@ namespace IdentityDemo2.Data
         public DbSet<IdentityDemo2.DTOs.RoleStore>? RoleStore { get; set; }
         public DbSet<Contest> Contestes { get; set; }
         public DbSet<Problem> Problemes { get; set; }
+        public DbSet<IdentityDemo2.Models.Attempt>? Attempt { get; set; }
 
 
     }

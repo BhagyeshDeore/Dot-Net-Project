@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IdentityDemo2.Data;
 using IdentityDemo2.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace IdentityDemo2.Controllers
 {
     public class ProblemsController : Controller
     {
         private readonly ParikshakDBContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ProblemsController(ParikshakDBContext context)
+
+        public ProblemsController(ParikshakDBContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: Problems
@@ -164,5 +169,73 @@ namespace IdentityDemo2.Controllers
         {
           return (_context.Problemes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
+
+
+        ////*** Viraj working here ***/////////////////////////////////////////////////////////////////
+
+
+        ////*** Viraj Completed ***////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+        ////*** Rushikesh working here ***/////////////////////////////////////////////////////////////
+
+
+        ////*** Rushikesh Completed ***////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ////*** Bhagyesh working here ***////////////////////////////////////////////////////////////////
+
+
+        ////*** Bhagyesh Completed ***////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+        ////*** Ankita working here ***/////////////////////////////////////////////////////////////////
+
+
+        ////*** Ankita Completed ***///////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+        ////*** Vaishnavi working here ***////////////////////////////////////////////////////////////////
+
+
+        ////*** Vaishanavi Completed ***/////////////////////////////////////////////////////////////////
+
     }
 }

@@ -34,6 +34,11 @@
         public Contest Contest { get; set; } = null!;
 
 
+        //Foreign Key for attempt tables
+        public ICollection<Attempt> attempt { get; } = new List<Attempt>();
+
+
+
 
     }
 }

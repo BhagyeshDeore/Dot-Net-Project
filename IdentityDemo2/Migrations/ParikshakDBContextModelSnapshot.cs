@@ -107,6 +107,50 @@ namespace IdentityDemo2.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("IdentityDemo2.Models.Attempt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("ContestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ObtainedMarks")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProblemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("SolvedStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ContestId");
+
+                    b.HasIndex("ProblemId");
+
+                    b.ToTable("Attempt");
+                });
+
             modelBuilder.Entity("IdentityDemo2.Models.Contest", b =>
                 {
                     b.Property<int>("Id")
@@ -330,6 +374,33 @@ namespace IdentityDemo2.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("IdentityDemo2.Models.Attempt", b =>
+                {
+                    b.HasOne("IdentityDemo2.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IdentityDemo2.Models.Contest", "Contest")
+                        .WithMany("attempt")
+                        .HasForeignKey("ContestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IdentityDemo2.Models.Problem", "Problem")
+                        .WithMany("attempt")
+                        .HasForeignKey("ProblemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Contest");
+
+                    b.Navigation("Problem");
+                });
+
             modelBuilder.Entity("IdentityDemo2.Models.Contest", b =>
                 {
                     b.HasOne("IdentityDemo2.Models.ApplicationUser", "ApplicationUser")
@@ -405,7 +476,14 @@ namespace IdentityDemo2.Migrations
 
             modelBuilder.Entity("IdentityDemo2.Models.Contest", b =>
                 {
+                    b.Navigation("attempt");
+
                     b.Navigation("problems");
+                });
+
+            modelBuilder.Entity("IdentityDemo2.Models.Problem", b =>
+                {
+                    b.Navigation("attempt");
                 });
 #pragma warning restore 612, 618
         }

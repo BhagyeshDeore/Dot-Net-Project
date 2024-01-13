@@ -32,5 +32,9 @@ namespace IdentityDemo2.Models
         public ICollection<Problem> problems { get; } = new List<Problem>();
 
 
+        //Foreign Key for attempt tables
+        public ICollection<Attempt> attempt { get; } = new List<Attempt>();
+
+
     }
 }

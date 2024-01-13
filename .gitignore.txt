@@ -1,0 +1,5 @@
+IdentityDemo2/.vs/IdentityDemo2/FileContentIndex/
+
+/IdentityDemo2/.vs/IdentityDemo2/FileContentIndex/
+
+.vsidx
