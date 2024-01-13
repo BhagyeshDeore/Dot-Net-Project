@@ -193,15 +193,15 @@ namespace IdentityDemo2.Controllers
         [Authorize(Roles ="TEACHER")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddProblem(int id,[Bind("Id,Title,Description,ProblemStatement,Explanation,Marks,DifficultyLevel,SampleInput,SampleOutput,Testcase,ResultOfTestCase,SolutionCode")] Problem problem)
+        public async Task<IActionResult> AddProblem(int contestid,[Bind("Title,Description,ProblemStatement,Explanation,Marks,DifficultyLevel,SampleInput,SampleOutput,Testcase,ResultOfTestCase,SolutionCode")] Problem problem)
         {
-            Console.WriteLine("craeting prblem for id : " + id+ "with problem Id "+problem.Id);
+            Console.WriteLine("craeting prblem for id : " + contestid+ "with problem Id "+problem.Id);
             //setting contest id in problem 
-            problem.ContestId = id;
+            problem.ContestId = contestid;
 
             _context.Add(problem);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Contests/TeacherContestDetails/"+id);
+            return RedirectToAction("Contests/TeacherContestDetails/"+contestid);
            
            
         }

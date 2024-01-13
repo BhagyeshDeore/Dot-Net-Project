@@ -196,7 +196,7 @@ namespace IdentityDemo2.Controllers
         // GET: TeacherAllContests
         public async Task<IActionResult> TeacherMyContests()
         {
-            //getting looged in user id
+            //getting logged in user id
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //fetching contests where user id is this
             var parikshakDBContext = _context.Contestes.Where(c => c.ApplicationUserId == userId ).Include(c => c.ApplicationUser);
