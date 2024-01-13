@@ -242,6 +242,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcVGVhY2hlck15Q29udGVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/gitDemo2/Parikshak_dot_net/IdentityDemo2/Views/Contests/TeacherProblemsList_partial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcVGVhY2hlclByb2JsZW1zTGlzdF9wYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/gitDemo2/Parikshak_dot_net/IdentityDemo2/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -274,8 +278,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvYmxlbXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/gitDemo2/Parikshak_dot_net/IdentityDemo2/Views/Problems/TeacherProblemsList_partial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvYmxlbXNcVGVhY2hlclByb2JsZW1zTGlzdF9wYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/gitDemo2/Parikshak_dot_net/IdentityDemo2/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/gitDemo2/Parikshak_dot_net/IdentityDemo2/Views/Shared/TeacherProblemsList_partial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFRlYWNoZXJQcm9ibGVtc0xpc3RfcGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/gitDemo2/Parikshak_dot_net/IdentityDemo2/Views/Shared/_LoginPartial.cshtml]
