@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using IdentityDemo2.Data;
 using IdentityDemo2.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Org.BouncyCastle.Tls;
 
 namespace IdentityDemo2.Controllers
 {
@@ -174,6 +176,37 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Viraj working here ***/////////////////////////////////////////////////////////////////
+
+
+        [Authorize(Roles ="TEACHER")]
+        // GET: Problems/Create
+        public IActionResult AddProblem()
+        {
+            return View();
+        }
+
+
+
+        // POST: Problems/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles ="TEACHER")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddProblem(int id,[Bind("Id,Title,Description,ProblemStatement,Explanation,Marks,DifficultyLevel,SampleInput,SampleOutput,Testcase,ResultOfTestCase,SolutionCode")] Problem problem)
+        {
+            Console.WriteLine("craeting prblem for id : " + id+ "with problem Id "+problem.Id);
+            //setting contest id in problem 
+            problem.ContestId = id;
+
+            _context.Add(problem);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Contests/TeacherContestDetails/"+id);
+           
+           
+        }
+
+
 
 
         ////*** Viraj Completed ***////////////////////////////////////////////////////////////////////

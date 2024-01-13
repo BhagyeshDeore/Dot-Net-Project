@@ -10,6 +10,7 @@ using IdentityDemo2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Security.Principal;
 
 namespace IdentityDemo2.Controllers
 {
@@ -181,6 +182,145 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Viraj working here ***/////////////////////////////////////////////////////////////////
+
+        [Authorize(Roles ="TEACHER")]
+        // GET: TeacherAllContests
+        public async Task<IActionResult> TeacherAllContests()
+        {
+            var parikshakDBContext = _context.Contestes.Include(c => c.ApplicationUser);
+            return View(await parikshakDBContext.ToListAsync());
+        }
+
+
+        [Authorize(Roles = "TEACHER")]
+        // GET: TeacherAllContests
+        public async Task<IActionResult> TeacherMyContests()
+        {
+            //getting looged in user id
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //fetching contests where user id is this
+            var parikshakDBContext = _context.Contestes.Where(c => c.ApplicationUserId == userId ).Include(c => c.ApplicationUser);
+            return View(await parikshakDBContext.ToListAsync());
+        }
+
+
+
+        [Authorize(Roles = "TEACHER")]
+        // GET: Contests/Create
+        public IActionResult CreateNewContest()
+        {
+            //ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
+            return View();
+        }
+
+
+        [Authorize(Roles = "TEACHER")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateNewContest([Bind("Id,Title,Description,Topic,CreatedAt")] Contest contest)
+        {
+           
+            //getting logged in user id
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //assigning it to the contest object
+            contest.ApplicationUserId = userId;
+            //adding to database
+            _context.Add(contest);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("TeacherContestDetails");
+           
+        }
+
+        [Authorize(Roles = "TEACHER")]
+        // GET: Contests/Details/5
+        public async Task<IActionResult> TeacherContestDetails(int? id)
+        {
+            if (id == null || _context.Contestes == null)
+            {
+                return NotFound();
+            }
+
+            var contest = await _context.Contestes
+                .Include(c => c.ApplicationUser)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (contest == null)
+            {
+                return NotFound();
+            }
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //if (contest.ApplicationUserId != userId) {
+            //    return NotFound();
+            //}
+
+            return View(contest);
+        }
+
+        [Authorize(Roles = "TEACHER")]
+        // GET: Contests/Edit/5
+        public async Task<IActionResult> EditMyContest(int? id)
+        {
+            if (id == null || _context.Contestes == null)
+            {
+                return NotFound();
+            }
+
+            var contest = await _context.Contestes.FindAsync(id);
+            if (contest == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (contest.ApplicationUserId != userId)
+            {
+                return NotFound();
+            }
+
+            return View(contest);
+        }
+
+        // POST: Contests/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "TEACHER")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditMyContest(int id, [Bind("Id,Title,Description,Topic")] Contest contest)
+        {
+            if (id != contest.Id)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                //getting logged in user id
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                //assigning it to the contest object
+                contest.ApplicationUserId = userId;
+                Console.WriteLine(contest.Title + contest.ApplicationUserId + contest.Description);
+                var contestUpdated =  _context.Contestes.Find(contest.Id);
+                contestUpdated.Title = contest.Title;
+                contestUpdated.Topic = contest.Topic;
+                contestUpdated.Description = contest.Description;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ContestExists(contest.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("TeacherMyContests");
+           
+        }
+
+
 
 
         ////*** Viraj Completed ***////////////////////////////////////////////////////////////////////
