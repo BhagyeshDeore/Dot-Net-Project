@@ -202,6 +202,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW1wdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Desktop/Parikshak Dot Net/IdentityDemo2/Views/Contests/ContestroblemsList_partial_.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcQ29udGVzdHJvYmxlbXNMaXN0X3BhcnRpYWxfLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Desktop/Parikshak Dot Net/IdentityDemo2/Views/Contests/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -272,6 +276,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Admin/Desktop/Parikshak Dot Net/IdentityDemo2/Views/Problems/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvYmxlbXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Parikshak Dot Net/IdentityDemo2/Views/Problems/ProblemDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvYmxlbXNcUHJvYmxlbURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Desktop/Parikshak Dot Net/IdentityDemo2/Views/Shared/Error.cshtml]
