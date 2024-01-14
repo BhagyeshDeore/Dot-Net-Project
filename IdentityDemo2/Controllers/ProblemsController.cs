@@ -206,11 +206,6 @@ namespace IdentityDemo2.Controllers
            
         }
 
-        public async Task<IActionResult> TeacherProblemsList_partial()
-        {
-            var parikshakDBContext = _context.Problemes.Include(p => p.Contest);
-            return View(await parikshakDBContext.ToListAsync());
-        }
 
 
 
