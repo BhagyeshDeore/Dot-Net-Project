@@ -228,6 +228,22 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Rushikesh working here ***/////////////////////////////////////////////////////////////
+        // GET: Attempt a Problem
+        [Authorize(Roles = "STUDENT")]
+        public async Task<IActionResult> AttemptProblem(int problemId)
+        {
+            var problemDetails = await _context.Problemes
+                .Where(p => p.Id == problemId)
+                .FirstOrDefaultAsync();
+
+            if (problemDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(problemDetails);
+        }
+
 
 
         ////*** Rushikesh Completed ***////////////////////////////////////////////////////////////////

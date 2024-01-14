@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<IdentityDemo2.Models.Contest>
+@using Microsoft.AspNetCore.Identity
+@using IdentityDemo2.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "All Contests";
+}
+
+<h1>All Contests</h1>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Contest ID: @Html.DisplayFor(modelItem => item.Id)</h4>
+                        <h5 class="card-title">Title: @Html.DisplayFor(modelItem => item.Title)</h5>
+                        <h6 class="card-title">Topic: @Html.DisplayFor(modelItem => item.Topic)</h6>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+
+
+                        <a asp-controller="Contests" asp-action="ProblemsForContest" asp-route-contestId="@item.Id" class="btn btn-info">Open</a>
+
+                        <hr />
+                        <p class="card-text">Created By: @Html.DisplayFor(modelItem => item.ApplicationUser.Name) Created At: @Html.DisplayFor(modelItem => item.CreatedAt)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

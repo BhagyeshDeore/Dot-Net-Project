@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Security.Principal;
+using System.Runtime.Intrinsics.X86;
 
 namespace IdentityDemo2.Controllers
 {
@@ -340,7 +341,39 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Rushikesh working here ***/////////////////////////////////////////////////////////////
+        
+        
+        // GET: All Contests for Student
+        [Authorize(Roles = "STUDENT")]
+        public async Task<IActionResult> AllContestsForStudent()
+        {
+            var contests = await _context.Contestes.Include(c => c.ApplicationUser).ToListAsync();
+            return View(contests);
+        }
 
+
+        // GET: Problems of a Specific Contest for Student
+        [Authorize(Roles = "STUDENT")]
+        public async Task<IActionResult> ProblemsForContest(int contestId)
+        {
+            var contest = await _context.Contestes
+                .Include(c => c.ApplicationUser)
+                .FirstOrDefaultAsync(m => m.Id == contestId);
+
+            if (contest == null)
+            {
+                return NotFound();
+            }
+
+            var problemsForContest = await _context.Problemes
+                .Where(p => p.ContestId == contestId)
+                .ToListAsync();
+
+            // Set contest details in ViewData
+            ViewData["ContestNumber"] = contest.Id;
+            ViewData["ContestTitle"] = contest.Title; // Pass the contest title to the view
+            return View(problemsForContest);
+        }
 
         ////*** Rushikesh Completed ***////////////////////////////////////////////////////////////////
 
