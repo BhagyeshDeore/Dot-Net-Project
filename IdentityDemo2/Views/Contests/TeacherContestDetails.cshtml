@@ -39,12 +39,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CreatedAt)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplicationUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApplicationUser.Id)
-        </dd>
     </dl>
 </div>
 <div>
@@ -52,8 +46,16 @@
      {            
         <a asp-controller="Contests" asp-action="EditMyContest" asp-route-id="@Model.Id" type="button" class="btn btn-warning">Edit</a>
 
-        <a asp-controller="Problems" asp-action="AddProblem" asp-route-id="@Model.Id" type="button" class="btn btn-alert">Add Problem</a>
+        <a asp-controller="Problems" asp-action="AddProblem" asp-route-id="@Model.Id" type="button" class="btn btn-success">Add Problem</a>
 
      }
-    <a asp-controller="Contests" asp-action="TeacherMyContests"  type="button" class="btn btn-primary">Back to List</a>
+    <a asp-controller="Contests" asp-action="TeacherMyContests"  type="button" class="btn btn-primary">Back to Contests</a>
+
 </div>
+
+
+@{
+    Html.RenderPartial("ContestroblemsList_partial_", Model.problems);
+
+    }
+

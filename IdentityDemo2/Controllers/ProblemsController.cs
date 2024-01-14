@@ -206,7 +206,31 @@ namespace IdentityDemo2.Controllers
            
         }
 
+        public async Task<IActionResult> ContestroblemsList_partial_() {
 
+            var parikshakDBContext = _context.Problemes.ToListAsync();
+            Console.WriteLine(parikshakDBContext);
+            return PartialView( parikshakDBContext );
+
+;        }
+
+        public async Task<IActionResult> ProblemDetails(int? id)
+        {
+            if (id == null || _context.Problemes == null)
+            {
+                return NotFound();
+            }
+
+            var problem = await _context.Problemes
+                .Include(p => p.Contest)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (problem == null)
+            {
+                return NotFound();
+            }
+
+            return View(problem);
+        }
 
 
 

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IdentityDemo2.Models.Problem>
+@using Microsoft.AspNetCore.Identity
+@using IdentityDemo2.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+    <br />
+    <hr />
+<div class="alert alert-primary" role="alert">
+   List of Problems in Contest
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-1 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Problem ID : @Html.DisplayFor(modelItem => item.Id)</h4>
+                        <h5 class="card-title">Title: @Html.DisplayFor(modelItem => item.Title)</h5>
+                        <h6 class="card-title">Difficulty Level: @Html.DisplayFor(modelItem => item.DifficultyLevel) | Marks : @Html.DisplayFor(modelItem => item.Marks)</h6>
+
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+
+                        <a asp-controller="Problems" asp-action="ProblemDetails" asp-route-id="@item.Id" type="button" class="btn btn-info">Details</a>
+@* 
+                        @if (UserManager.GetUserName(User) == ""){
+                            <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-warning">Edit</a>
+
+                        } *@
+
+        
+                        <hr />
+                        <p class="card-text">Contest ID : @Html.DisplayFor(modelItem => item.ContestId)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+

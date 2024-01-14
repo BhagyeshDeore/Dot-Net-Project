@@ -243,6 +243,7 @@ namespace IdentityDemo2.Controllers
 
             var contest = await _context.Contestes
                 .Include(c => c.ApplicationUser)
+                .Include(c => c.problems)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (contest == null)
             {
@@ -320,7 +321,6 @@ namespace IdentityDemo2.Controllers
             return RedirectToAction("TeacherMyContests");
            
         }
-
 
 
 
