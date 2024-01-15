@@ -1,0 +1,102 @@
+﻿@model IdentityDemo2.Models.Problem
+
+@{
+    ViewData["Title"] = "AttemptProblem";
+}
+
+<h1>AttemptProblem</h1>
+
+<div>
+    <h4>Problem</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ProblemStatement)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ProblemStatement)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Explanation)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Explanation)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Marks)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Marks)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DifficultyLevel)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DifficultyLevel)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SampleInput)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SampleInput)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SampleOutput)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SampleOutput)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Testcase)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Testcase)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ResultOfTestCase)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ResultOfTestCase)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SolutionCode)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SolutionCode)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contest)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contest.Id)
+                </dd>
+            </div>
+
+            <div class="col-sm">
+                @{
+                    Html.RenderPartial("attemptproblem_partial_", Model.attempt.FirstOrDefault());
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
