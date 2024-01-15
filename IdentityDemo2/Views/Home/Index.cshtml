@@ -1,8 +1,364 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using IdentityDemo2.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Platform</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .jumbotron {
+            background-color: #fff;
+            padding: 40px;
+            margin-bottom: 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .footer_P {
+            color: #f4f4f4;
+        }
+
+        .card-deck {
+            margin-top: 30px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+            }
+
+            .card img {
+                border-radius: 10px 10px 0 0;
+            }
+    </style>
+</head>
+
+<body>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="header">
+            <h1>Welcome to <span class="highlight">Parikshak</span><strong>&nbsp;,&nbsp;@UserManager.GetUserName(User)</strong></h1>
+            <p>Practice coding, prepare for Competitive Coding, and elevate your skills</p>
+        </div>
+    }
+    else
+    {
+        <div class="header">
+            <h1>Welcome to <span class="highlight">Parikshak</span></h1>
+            <p>Practice coding, prepare for Competitive Coding, and elevate your skills</p>
+        </div>
+        
+    }
+    <section>
+        <div class="container">
+            <div class="jumbotron">
+                <h2 class="display-4">🚀 Unlock Your Coding Potential</h2>
+                <p class="lead">Embark on an exciting journey with <span class="highlight">Parikshak</span>, where you can supercharge your skills, broaden your knowledge, and conquer technical Coding Rounds.</p>
+                <hr class="my-4">
+                <p>🌐 Explore a diverse range of coding challenges, sharpen your problem-solving prowess, and join a vibrant global community of passionate developers.</p>
+                <div class="cta-buttons">
+                    <a class="btn btn-primary btn-lg" href="#" role="button" data-bs-toggle="modal" data-bs-target="#codingInfoModal">Get Started</a>
+                    <a class="btn btn-outline-secondary btn-lg" href="#" role="button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <br /><br />
+            <h2 class="mb-4">Important Topics in Programming</h2>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://cdn.shopify.com/s/files/1/0306/6419/6141/articles/coding_languages.png?v=1619126283" class="card-img-top" alt="Web Programming">
+                            <div class="card-body">
+                                <h5 class="card-title">Web Programming</h5>
+                                <p class="card-text">Description of Web Programming.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#webProgrammingModal">Show Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230627113746/DSA-full-form.png" class="card-img-top" alt="DSA">
+                            <div class="card-body">
+                                <h5 class="card-title">DSA</h5>
+                                <p class="card-text">Description of DSA.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dsaModal">Show Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://miro.medium.com/v2/resize:fit:750/format:webp/0*6Jism4uJOE7FbaTS.png" class="card-img-top" alt="OOPs">
+                            <div class="card-body">
+                                <h5 class="card-title">OOPs</h5>
+                                <p class="card-text">Description of OOPs.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#oopsModal">Show Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://files.codingninjas.in/article_images/custom-upload-1677072692.webp" class="card-img-top" alt="String Manipulation">
+                            <div class="card-body">
+                                <h5 class="card-title">String Manipulation</h5>
+                                <p class="card-text">Explore techniques for string manipulation, concatenation, and pattern matching.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#stringModal">Show Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://www.scientecheasy.com/wp-content/uploads/2020/02/exception-handling-1.png" class="card-img-top" alt="Exception Handling">
+                            <div class="card-body">
+                                <h5 class="card-title">Exception Handling</h5>
+                                <p class="card-text">Learn how to handle exceptions gracefully and implement error recovery strategies.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exceptionHandlingModal">Show Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="https://cdn.educba.com/academy/wp-content/uploads/2019/04/multithreading-In-Java.png.webp" class="card-img-top" alt="Multithreading">
+                            <div class="card-body">
+                                <h5 class="card-title">Multithreading</h5>
+                                <p class="card-text">Explore concurrent execution of multiple threads to improve performance and responsiveness.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#multithreadingModal">Show Info</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+  
+    <!-- Web Programming Modal -->
+    <div class="modal fade" id="webProgrammingModal" tabindex="-1" aria-labelledby="webProgrammingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="webProgrammingModalLabel">Web Programming</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Web Programming involves the creation and development of websites and web applications. It encompasses a variety of technologies and skills to build interactive and dynamic user interfaces. Here are some key aspects of Web Programming:</p>
+                    <ul>
+                        <li><strong>HTML (Hypertext Markup Language):</strong> The standard markup language for creating web pages and web applications.</li>
+                        <li><strong>CSS (Cascading Style Sheets):</strong> Used for styling and layout of web pages, enhancing the visual presentation.</li>
+                        <li><strong>JavaScript:</strong> A versatile scripting language that adds interactivity and dynamic behavior to web pages.</li>
+                        <li><strong>Server-Side Scripting:</strong> Technologies like PHP, Node.js, and Python are used for server-side scripting to handle server operations and database interactions.</li>
+                        <li><strong>Web Frameworks:</strong> Frameworks like React, Angular, and Vue.js facilitate the development of robust and scalable web applications.</li>
+                        <li><strong>Database Integration:</strong> Interaction with databases, such as MySQL, MongoDB, or PostgreSQL, to store and retrieve data.</li>
+                    </ul>
+                    <p>By mastering Web Programming, developers can create responsive and feature-rich websites, ensuring a seamless user experience across different devices.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DSA Modal -->
+    <div class="modal fade" id="dsaModal" tabindex="-1" aria-labelledby="dsaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dsaModalLabel">Data Structures and Algorithms (DSA)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Data Structures and Algorithms (DSA) are fundamental to efficient programming and problem-solving. Here are key concepts of DSA:</p>
+                    <ul>
+                        <li><strong>Arrays and Linked Lists:</strong> Basic data structures for storing and organizing data.</li>
+                        <li><strong>Trees and Graphs:</strong> Hierarchical structures used for various applications.</li>
+                        <li><strong>Sorting and Searching Algorithms:</strong> Techniques for organizing and retrieving data efficiently.</li>
+                        <li><strong>Dynamic Programming:</strong> Optimizing recursive algorithms by storing solutions to subproblems.</li>
+                        <li><strong>Greedy Algorithms:</strong> Making locally optimal choices at each stage with the hope of finding a global optimum.</li>
+                        <li><strong>Complexity Analysis:</strong> Analyzing the time and space complexity of algorithms.</li>
+                    </ul>
+                    <p>DSA is essential for writing efficient and scalable code, and it forms the basis for solving algorithmic problems in technical interviews.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OOPs Modal -->
+    <div class="modal fade" id="oopsModal" tabindex="-1" aria-labelledby="oopsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="oopsModalLabel">Object-Oriented Programming (OOPs)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Object-Oriented Programming (OOP) is a programming paradigm that organizes code into objects, each representing an instance of a class. Here are key concepts of OOPs:</p>
+                    <ul>
+                        <li><strong>Classes and Objects:</strong> Classes define the blueprint for objects, which are instances of those classes.</li>
+                        <li><strong>Encapsulation:</strong> Bundling of data and methods that operate on that data into a single unit (class).</li>
+                        <li><strong>Inheritance:</strong> Allows a class to inherit properties and behaviors from another class, promoting code reusability.</li>
+                        <li><strong>Polymorphism:</strong> Enables a single interface to represent different types, allowing flexibility and extensibility.</li>
+                        <li><strong>Abstraction:</strong> Simplifying complex systems by modeling classes based on the essential properties and behaviors they share.</li>
+                    </ul>
+                    <p>OOP promotes modular and scalable code, making it easier to understand, maintain, and extend software systems.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- String Modal -->
+    <div class="modal fade" id="stringModal" tabindex="-1" aria-labelledby="stringModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="stringModalLabel">String Manipulation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>String Manipulation is a fundamental skill in programming. Here are key concepts of string manipulation:</p>
+                    <ul>
+                        <li><strong>Concatenation:</strong> Combine multiple strings into one.</li>
+                        <li><strong>Substring Extraction:</strong> Extract portions of a string based on specified indices.</li>
+                        <li><strong>Pattern Matching:</strong> Use regular expressions or algorithms to match patterns within strings.</li>
+                        <li><strong>String Comparison:</strong> Compare strings for equality or order.</li>
+                    </ul>
+                    <p>Mastering string manipulation is essential for tasks such as text processing, data validation, and working with user inputs.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exception Handling Modal -->
+    <div class="modal fade" id="exceptionHandlingModal" tabindex="-1" aria-labelledby="exceptionHandlingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exceptionHandlingModalLabel">Exception Handling</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Exception Handling is a crucial aspect of writing robust and error-resistant code. Here are key concepts of exception handling:</p>
+                    <ul>
+                        <li><strong>Try-Catch Blocks:</strong> Use try-catch blocks to handle exceptions and gracefully recover from errors.</li>
+                        <li><strong>Custom Exceptions:</strong> Create custom exceptions to handle specific error scenarios in your code.</li>
+                        <li><strong>Error Recovery Strategies:</strong> Implement strategies for recovering from errors and maintaining application stability.</li>
+                        <li><strong>Logging:</strong> Use logging to capture and track errors for debugging purposes.</li>
+                    </ul>
+                    <p>Effective exception handling ensures that your applications can handle unexpected situations and provide a better user experience.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Multithreading Modal -->
+    <div class="modal fade" id="multithreadingModal" tabindex="-1" aria-labelledby="multithreadingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="multithreadingModalLabel">Multithreading</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Multithreading allows for concurrent execution of multiple threads, enhancing the performance and responsiveness of applications. Here are key concepts of multithreading:</p>
+                    <ul>
+                        <li><strong>Thread Creation:</strong> Create and manage multiple threads in your application.</li>
+                        <li><strong>Synchronization:</strong> Implement synchronization mechanisms to coordinate the execution of threads and prevent race conditions.</li>
+                        <li><strong>Communication between Threads:</strong> Enable communication and data sharing between threads for collaborative tasks.</li>
+                        <li><strong>Thread Safety:</strong> Ensure that your multithreaded code is safe and free from concurrency-related issues.</li>
+                    </ul>
+                    <p>Multithreading is crucial for developing responsive and scalable applications, particularly in scenarios where concurrent execution is beneficial.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
