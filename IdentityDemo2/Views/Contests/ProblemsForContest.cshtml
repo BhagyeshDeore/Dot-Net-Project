@@ -1,5 +1,40 @@
 ﻿@model IEnumerable<IdentityDemo2.Models.Problem>
 
+<style>
+
+    /* Add background color to the entire page */
+    body {
+        background-color: #fff5e6; /* Light orange background color */
+    }
+
+    /* Style the cards with a background color */
+    .card {
+        background-color: #ffe0b3; /* Light gray card background color */
+        border: 1px solid #e0e0e0; /* Light border color */
+        border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+        margin-bottom: 20px; /* Optional: Add margin between cards */
+        border-color: #ffb366;
+    }
+
+
+    /* Customize card title and button colors */
+    .card-title,
+    .btn-info {
+        color: #333333; /* Dark gray text color */
+    }
+
+    .btn-info {
+        background-color: #ffb366; /* Even lighter orangish button color */
+        border-color: #ffb366; /* Even lighter orangish border color */
+    }
+
+        /* Remove hover effect on the button */
+        .btn-info:hover {
+            background-color: #ffb366; /* Keep the same color on hover */
+            border-color: #ffb366; /* Keep the same border color on hover */
+        }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-9">
@@ -15,7 +50,7 @@
                                     <strong>Difficulty:</strong> @Html.DisplayFor(modelItem => item.DifficultyLevel) <br />
                                     <strong>Marks:</strong> @Html.DisplayFor(modelItem => item.Marks)
                                 </p>
-                                <a asp-controller="Attempts" asp-action="Create" asp-route-problemId="@item.Id" class="btn btn-primary">Attempt</a>
+                                <a asp-controller="Problems" asp-action="AttemptProblem" asp-route-problemId="@item.Id" class="btn btn-info">Attempt</a>
                             </div>
                         </div>
                     </div>

@@ -15,6 +15,40 @@
     ViewData["Title"] = "All Contests";
 }
 
+<style>
+    /* Add background color to the entire page */
+    body {
+        background-color: #fff5e6; /* Light orange background color */
+    }
+
+    /* Style the cards with a background color */
+    .card {
+        background-color: #ffe0b3; /* Light gray card background color */
+        border: 1px solid #e0e0e0; /* Light border color */
+        border-radius: 10px; /* Optional: Add border-radius for rounded corners */
+        margin-bottom: 20px; /* Optional: Add margin between cards */
+        border-color: #ffb366;
+    }
+
+    /* Customize card title and button colors */
+    .card-title,
+    .btn-info {
+        color: #333333; /* Dark gray text color */
+    }
+
+    .btn-info {
+        background-color: #ffb366; /* Light orange button color */
+        border-color: #ffb366; /* Light orange border color */
+    }
+
+    /* Remove hover effect on the button */
+    .btn-info:hover {
+            background-color: #ffb366; /* Keep the same color on hover */
+            border-color: #ffb366; /* Keep the same border color on hover */
+    }
+
+</style>
+
 <h1>All Contests</h1>
 
 <div class="container">
@@ -22,13 +56,12 @@
         @foreach (var item in Model)
         {
             <div class="col">
-                <div class="card">
+                <div class="card custom-card">
                     <div class="card-body">
                         <h4 class="card-title">Contest ID: @Html.DisplayFor(modelItem => item.Id)</h4>
                         <h5 class="card-title">Title: @Html.DisplayFor(modelItem => item.Title)</h5>
                         <h6 class="card-title">Topic: @Html.DisplayFor(modelItem => item.Topic)</h6>
                         <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-
 
                         <a asp-controller="Contests" asp-action="ProblemsForContest" asp-route-contestId="@item.Id" class="btn btn-info">Open</a>
 
@@ -40,3 +73,4 @@
         }
     </div>
 </div>
+

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using IdentityDemo2.Data;
 using IdentityDemo2.Models;
 using Microsoft.AspNetCore.Identity;
+using IdentityDemo2.Migrations;
+using System.Security.Claims;
 
 namespace IdentityDemo2.Controllers
 {
@@ -203,6 +205,58 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Rushikesh working here ***/////////////////////////////////////////////////////////////
+        // POST: Attempts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> attemptproblem_partial_(int? problem_id ithe get kar,[Bind("Code")] Attempt attempt)
+        {
+
+            //contest id shall be passed and logged in user shall also post 
+            Console.WriteLine("Submitted problem for id: " + attempt.Id);
+            attempt.Language = CodingLanguage.JAVA;
+            attempt.SolvedStatus = SolvedStatus.Solved;
+            attempt.Result = "PASS";
+            attempt.ObtainedMarks = 10;
+
+            _context.Add(attempt);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }*/
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> attemptproblem_partial_([Bind("Code")] Attempt attempt)
+        {
+            Console.WriteLine("Submitted problem id  : ");
+            // Handle the form submission logic here
+            Console.WriteLine("Submitted problem for id: " + attempt.Id);
+            attempt.Language = CodingLanguage.JAVA;
+            attempt.SolvedStatus = SolvedStatus.Solved;
+            attempt.Result = "PASS";
+            attempt.ObtainedMarks = 10;
+            //attempt.ProblemId = problem_id; 
+
+
+
+            _context.Add(attempt);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //POST: 
+        [HttpPost]
+        public async Task<IActionResult> attemptproblemCode()
+        {
+            Console.WriteLine("Hello from attempt");
+
+            return View();
+        }
+
+
 
 
         ////*** Rushikesh Completed ***////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@
     {
         JAVA
     }
+    
     public enum SolvedStatus {
         CompileTime_Error, RunTime_Exception, TimeExceeded_Error, Partially_Solved, Solved
     }
