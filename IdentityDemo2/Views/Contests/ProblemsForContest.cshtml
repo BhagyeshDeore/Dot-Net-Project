@@ -1,0 +1,68 @@
+﻿@model IEnumerable<IdentityDemo2.Models.Problem>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h5>Contest Id: @ViewData["ContestNumber"], Contest Title: @ViewData["ContestTitle"]</h5>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-12">
+                        <div class="card mb-4 difficulty-filter-card" data-difficulty="@Html.DisplayFor(modelItem => item.DifficultyLevel)">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <p class="card-text">
+                                    <strong>Difficulty:</strong> @Html.DisplayFor(modelItem => item.DifficultyLevel) <br />
+                                    <strong>Marks:</strong> @Html.DisplayFor(modelItem => item.Marks)
+                                </p>
+                                <a asp-controller="Attempts" asp-action="Create" asp-route-problemId="@item.Id" class="btn btn-primary">Attempt</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Difficulty filter column -->
+        <div class="col-md-3" style="margin-top: 32px;">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Difficulty Level : </h5>
+                    <form id="difficultyFilterForm">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="easyCheckbox" value="EASY" onchange="applyDifficultyFilter()">
+                            <label class="form-check-label" for="easyCheckbox">Easy</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="mediumCheckbox" value="MEDIUM" onchange="applyDifficultyFilter()">
+                            <label class="form-check-label" for="mediumCheckbox">Medium</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="hardCheckbox" value="HARD" onchange="applyDifficultyFilter()">
+                            <label class="form-check-label" for="hardCheckbox">Hard</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function applyDifficultyFilter() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            var cards = document.querySelectorAll('.difficulty-filter-card');
+
+            cards.forEach(function (card) {
+                var difficulty = card.getAttribute('data-difficulty');
+                var matches = Array.from(checkboxes)
+                    .filter(function (checkbox) {
+                        return checkbox.checked && (checkbox.value === difficulty || checkbox.value === '');
+                    });
+
+                card.style.display = matches.length > 0 ? 'block' : 'none';
+            });
+        }
+    </script>
+}
