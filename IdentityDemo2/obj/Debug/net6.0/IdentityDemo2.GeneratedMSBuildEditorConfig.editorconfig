@@ -206,6 +206,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcQWxsQ29udGVzdHNGb3JTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/DOT NET PROJECT/Parikshak_dot_net/IdentityDemo2/Views/Contests/ContestProblemsList2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcQ29udGVzdFByb2JsZW1zTGlzdDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/DOT NET PROJECT/Parikshak_dot_net/IdentityDemo2/Views/Contests/ContestroblemsList_partial_.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVzdHNcQ29udGVzdHJvYmxlbXNMaXN0X3BhcnRpYWxfLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -272,6 +276,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/DOT NET PROJECT/Parikshak_dot_net/IdentityDemo2/Views/Problems/attemptproblem_partial_.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvYmxlbXNcYXR0ZW1wdHByb2JsZW1fcGFydGlhbF8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/DOT NET PROJECT/Parikshak_dot_net/IdentityDemo2/Views/Problems/ContestProblemsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvYmxlbXNcQ29udGVzdFByb2JsZW1zTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/rushi/Desktop/DOT NET/DOT NET PROJECT/DOT NET PROJECT/Parikshak_dot_net/IdentityDemo2/Views/Problems/Create.cshtml]
