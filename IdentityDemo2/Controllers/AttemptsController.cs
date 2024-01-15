@@ -191,6 +191,29 @@ namespace IdentityDemo2.Controllers
         ////*** Viraj working here ***/////////////////////////////////////////////////////////////////
 
 
+        // GET: Attempts/Create
+        public IActionResult AttemptProblemCodeIt()
+        {
+            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["ContestId"] = new SelectList(_context.Contestes, "Id", "Id");
+            ViewData["ProblemId"] = new SelectList(_context.Problemes, "Id", "Id");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AttemptProblemCodeIt([Bind("Code,ApplicationUserId,ContestId,ProblemId")] Attempt attempt)
+        {
+           
+                _context.Add(attempt);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("");
+           
+        }
+
+
+
         ////*** Viraj Completed ***////////////////////////////////////////////////////////////////////
 
 
@@ -228,17 +251,20 @@ namespace IdentityDemo2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> attemptproblem_partial_([Bind("Code")] Attempt attempt)
+        public async Task<IActionResult> attemptproblem_partial_([Bind("Code")] Attempt attempt, int ProblemId)
         {
-            Console.WriteLine("Submitted problem id  : ");
-            // Handle the form submission logic here
-            Console.WriteLine("Submitted problem for id: " + attempt.Id);
+           
             attempt.Language = CodingLanguage.JAVA;
             attempt.SolvedStatus = SolvedStatus.Solved;
             attempt.Result = "PASS";
             attempt.ObtainedMarks = 10;
-            //attempt.ProblemId = problem_id; 
+            attempt.ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var problem = _context.Problemes.Find(ProblemId);
+            attempt.ContestId = problem.ContestId; 
+            attempt.ProblemId = ProblemId;
 
+            Console.WriteLine("Submitted problem id  : " + attempt.ProblemId + " contest id " + attempt.ContestId);
+            Console.WriteLine("Submitted  for user  id: " + attempt.ApplicationUserId);
 
 
             _context.Add(attempt);
