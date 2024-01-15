@@ -1,9 +1,12 @@
 ﻿@model IdentityDemo2.Models.Attempt
 
 <div>
-   
-        <form asp-controller="Problem" asp-action="attemptproblemCode" asp-route-problemid=@ViewData["ProblemId"]>
+    @{
+        var problem_id = Context.Request.Query["problemId"];
+    }
+    <form asp-controller="Attempts" asp-action="attemptproblem_partial_" asp-route-ProblemId=@problem_id >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h1>Problem Id : @problem_id</h1>
             <div class="form-group">
                 <label asp-for="Code" class="control-label"></label>
                 <textarea asp-for="Code" class="form-control" id="javaCodeEditor">
@@ -15,6 +18,7 @@
                 <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
+
     
 </div>
 
