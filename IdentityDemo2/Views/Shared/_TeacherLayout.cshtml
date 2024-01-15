@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - IdentityDemo2</title>
+    <title>@ViewData["Title"] - Parikshak</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/IdentityDemo2.styles.css" asp-append-version="true" />
@@ -11,13 +11,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
     <!-- Include CodeMirror Theme (optional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/theme/dracula.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #E6F7FF, #B3E0FF); /* Very light blue gradient */
+        }
+
+        .custom-card {
+            background-color: #FFFFFF; /* White background for the card */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            transition: transform 0.3s; /* Optional: Add a smooth transition effect */
+        }
+
+            .custom-card:hover {
+                transform: scale(1.02); /* Optional: Scale up the card on hover for a subtle interaction */
+            }
+    </style>
     
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">IdentityDemo2</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Parikshak</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
