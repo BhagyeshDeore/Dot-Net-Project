@@ -34,7 +34,9 @@ namespace IdentityDemo2.Controllers
 
         ////*** Viraj working here ***/////////////////////////////////////////////////////////////////
 
-
+        public async Task<IActionResult> adminDashBoard() {
+            return View();
+        }
         ////*** Viraj Completed ***////////////////////////////////////////////////////////////////////
 
 
