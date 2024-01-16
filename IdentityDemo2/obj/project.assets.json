@@ -12049,11 +12049,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Admin\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\rushi\\.nuget\\packages\\": {}
+>>>>>>> refs/remotes/origin/main
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Parikshak Dot Net\\IdentityDemo2\\IdentityDemo2.csproj",
       "projectName": "IdentityDemo2",
       "projectPath": "C:\\Users\\Admin\\Desktop\\Parikshak Dot Net\\IdentityDemo2\\IdentityDemo2.csproj",
@@ -12062,6 +12067,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\rushi\\Desktop\\DOT NET\\DOT NET PROJECT\\DOT NET PROJECT\\Parikshak_dot_net\\IdentityDemo2\\IdentityDemo2.csproj",
+      "projectName": "IdentityDemo2",
+      "projectPath": "C:\\Users\\rushi\\Desktop\\DOT NET\\DOT NET PROJECT\\DOT NET PROJECT\\Parikshak_dot_net\\IdentityDemo2\\IdentityDemo2.csproj",
+      "packagesPath": "C:\\Users\\rushi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rushi\\Desktop\\DOT NET\\DOT NET PROJECT\\DOT NET PROJECT\\Parikshak_dot_net\\IdentityDemo2\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\rushi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> refs/remotes/origin/main
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
