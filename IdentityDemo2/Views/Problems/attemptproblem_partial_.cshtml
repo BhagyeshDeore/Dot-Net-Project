@@ -6,8 +6,8 @@
     }
     <form asp-controller="Attempts" asp-action="attemptproblem_partial_" asp-route-ProblemId=@problem_id >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <h1>Problem Id : @problem_id</h1>
-            <div class="form-group">
+@*         <h1>Problem Id : @problem_id</h1>
+ *@            <div class="form-group">
                 <label asp-for="Code" class="control-label"></label>
                 <textarea asp-for="Code" class="form-control" id="javaCodeEditor">
                     </textarea>

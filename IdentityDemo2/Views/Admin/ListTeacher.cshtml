@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ApplicationUser>
+
+
+<div class="container mt-4">
+    <h2 class="text-center">Teacher List</h2>
+
+    <table class="table table-striped table-bordered table-fade-in">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Email</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Update</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var teacherUser in Model)
+            {
+                <tr>
+                    <td>@teacherUser.Id</td>
+                    <td>@teacherUser.Email</td>
+                    <td>@teacherUser.Name</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@teacherUser.Id">
+                            Update
+                        </a>
+                    </td>
+                </tr>
+            }
+    </table>
+    
+     
+        </tbody>
+    </table>
+</div>
+
+ 
