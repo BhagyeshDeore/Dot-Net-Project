@@ -273,9 +273,9 @@ namespace IdentityDemo2.Controllers
         [Authorize(Roles = "STUDENT")]
         public IActionResult attemptproblem_partial_()
         {
-            ViewData["ApplicationUserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["ContestId"] = new SelectList(_context.Contestes, "Id", "Id");
-            ViewData["ProblemId"] = new SelectList(_context.Problemes, "Id", "Id");
+            ViewBag.ApplicationUserId = new SelectList(_context.Users, "Id", "Id");
+            ViewBag.ContestId = new SelectList(_context.Contestes, "Id", "Id");
+            ViewBag.ProblemId= new SelectList(_context.Problemes, "Id", "Id");
             return PartialView();
         }
 
