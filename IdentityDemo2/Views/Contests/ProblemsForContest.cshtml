@@ -10,10 +10,16 @@
     /* Style the cards with a background color */
     .card {
         background-color: #ffe0b3; /* Light gray card background color */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
         border: 1px solid #e0e0e0; /* Light border color */
         border-radius: 10px; /* Optional: Add border-radius for rounded corners */
         margin-bottom: 20px; /* Optional: Add margin between cards */
         border-color: #ffb366;
+        transition: transform 0.3s; /* Optional: Add a smooth transition effect */
+    }
+
+    .card:hover {
+        transform: scale(1.02); /* Optional: Scale up the card on hover for a subtle interaction */
     }
 
 

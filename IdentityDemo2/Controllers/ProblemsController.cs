@@ -105,12 +105,16 @@ namespace IdentityDemo2.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            
+
+              
                 try
                 {
                     _context.Update(problem);
                     await _context.SaveChangesAsync();
+
+                    int contestId = problem.ContestId;
+                    return RedirectToAction("TeacherContestDetails", "Contests", new { id = contestId });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,11 +127,14 @@ namespace IdentityDemo2.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
+            
+            
+
             ViewData["ContestId"] = new SelectList(_context.Contestes, "Id", "Id", problem.ContestId);
-            return View(problem);
+            return RedirectToAction("TeacherMyContests");
         }
+
+
 
         // GET: Problems/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<IdentityDemo2.Models.Problem>
+
 @using Microsoft.AspNetCore.Identity
 @using IdentityDemo2.Models
 
@@ -26,11 +27,12 @@
                         <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
 
                         <a asp-controller="Problems" asp-action="ProblemDetails" asp-route-id="@item.Id" type="button" class="btn btn-info">Details</a>
-@* 
-                        @if (UserManager.GetUserName(User) == ""){
-                            <a asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Problems" asp-action="Edit" asp-route-id="@item.Id" type="button"  class="btn btn-warning">Edit</a>
 
-                        } *@
+                  @*   @if (UserManager.GetUserName(User) == Model.ApplicationUser.UserName){
+                    <a asp-controller="Problems" asp-action="Edit" asp-route-id="@item.Id" type="button"  class="btn btn-warning">Edit</a>
+
+                        }  *@
 
         
                         <hr />

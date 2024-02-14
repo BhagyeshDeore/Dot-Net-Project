@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\images\\bg-4.jpg"
     },
     {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\parikshak-logo.ico",
+      "PackagePath": "staticwebassets\\images\\parikshak-logo.ico"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\parikshak.png",
+      "PackagePath": "staticwebassets\\images\\parikshak.png"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\parikshal2.png",
+      "PackagePath": "staticwebassets\\images\\parikshal2.png"
+    },
+    {
       "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
