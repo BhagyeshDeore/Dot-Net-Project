@@ -182,6 +182,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlUm9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Project_Dot-Net/Parikshak_dot_net/IdentityDemo2/Views/Admin/ListStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdFN0dWRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_Dot-Net/Parikshak_dot_net/IdentityDemo2/Views/Admin/ListTeacher.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTGlzdFRlYWNoZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Project_Dot-Net/Parikshak_dot_net/IdentityDemo2/Views/Admin/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Project_Dot-Net/Parikshak_dot_net/IdentityDemo2/Views/Attempts/AttemptProblemCodeIt.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW1wdHNcQXR0ZW1wdFByb2JsZW1Db2RlSXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
