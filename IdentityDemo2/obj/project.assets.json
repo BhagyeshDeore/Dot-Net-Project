@@ -12049,19 +12049,31 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\HP\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+>>>>>>> 28aa6ed9293ac4064c540e9f3eaf4f93d074a696
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\IdentityDemo2.csproj",
+=======
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Parikshak Dot Net\\IdentityDemo2\\IdentityDemo2.csproj",
+>>>>>>> 28aa6ed9293ac4064c540e9f3eaf4f93d074a696
       "projectName": "IdentityDemo2",
-      "projectPath": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\IdentityDemo2.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\Parikshak Dot Net\\IdentityDemo2\\IdentityDemo2.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\Parikshak Dot Net\\IdentityDemo2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 28aa6ed9293ac4064c540e9f3eaf4f93d074a696
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
