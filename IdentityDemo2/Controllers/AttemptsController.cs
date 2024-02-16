@@ -301,7 +301,19 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Bhagyesh working here ***////////////////////////////////////////////////////////////////
+        [Route("Attempts/SeeAttempts/{contestId}")]
+        public async Task<IActionResult> SeeAttempts(int contestId)
+        {
+            
+            var attempts = await _context.Attempt
+                .Include(a => a.ApplicationUser) 
+                .Include(a => a.Problem)
+                    .ThenInclude(p => p.Contest)
+                .Where(a => a.ContestId == contestId)
+                .ToListAsync();
 
+            return View(attempts);
+        }
 
         ////*** Bhagyesh Completed ***////////////////////////////////////////////////////////////////////////////
 

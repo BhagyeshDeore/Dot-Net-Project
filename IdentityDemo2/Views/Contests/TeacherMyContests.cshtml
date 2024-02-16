@@ -29,7 +29,7 @@
 
                         <a asp-controller="Contests" asp-action="EditMyContest" asp-route-id="@item.Id" type="button" class="btn btn-warning">Edit</a>
 
-
+                        <a asp-controller="Attempts" asp-action="SeeAttempts" asp-route-id="@item.Id" type="button" class="btn btn-warning">See Result</a>
                         <hr />
                         <p class="card-text">Created By : @Html.DisplayFor(modelItem => item.ApplicationUser.Name) Created At : @Html.DisplayFor(modelItem => item.CreatedAt)</p>
                     </div>

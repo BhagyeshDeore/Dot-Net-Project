@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IdentityDemo2.Models.Problem>
+
+@{
+    ViewData["Title"] = "SeeResult";
+}
+
+<h1>SeeResult</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Problem Statement</th>
+                <th>Explanation</th>
+                <th>Marks</th>
+                <th>Difficulty Level</th>
+                <th>Sample Input</th>
+                <th>Sample Output</th>
+                <th>Testcase</th>
+                <th>Result of Test Case</th>
+                <th>Solution Code</th>
+                <th>Contest Id</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ProblemStatement)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Explanation)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Marks)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DifficultyLevel)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SampleInput)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SampleOutput)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Testcase)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ResultOfTestCase)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SolutionCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Contest.Id)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

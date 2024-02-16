@@ -1,0 +1,89 @@
+﻿@model IEnumerable<IdentityDemo2.Models.Attempt>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Attempts</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <h1 class="text-center mb-4">Attempts by Students</h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead style="background-color: #6c757d; color: #fff;">
+                <tr>
+                    <th>Language</th>
+                    <th>Solved Status</th>
+                    <th>Result</th>
+                    <th>Obtained Marks</th>
+                    <th>Student Id</th>
+                    <th>Contest Id</th>
+                    <th>Problem Id</th>
+                    <th>Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Language)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SolvedStatus)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Result)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ObtainedMarks)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ApplicationUser.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Contest.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Problem.Id)</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#codeModal_@item.Id" data-code="@item.Code">Code</button>
+
+                        </td>
+                        <input type="hidden" id="code_@item.Id" value="@Html.DisplayFor(modelItem => item.Code)" />
+                    </tr>
+                    <div class="modal fade" id="codeModal_@item.Id" tabindex="-1" role="dialog" aria-labelledby="codeModalLabel_@item.Id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="codeModalLabel">Code Preview</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <pre><code id="codeDisplay">@item.Code</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    
+
+    <!-- Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-target^="#codeModal_"]').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var code = button.data('code');
+                var modal = $(this);
+                modal.find('.modal-body #codeDisplay').text(code);
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -103,6 +103,10 @@ namespace IdentityDemo2.Areas.Identity.Pages.Account
             public string PhoneNumber { get; set; }
             public string Address { get; set; }
 
+            public string Role {  get; set; }
+
+
+
         }
 
 
@@ -131,12 +135,29 @@ namespace IdentityDemo2.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    Console.WriteLine("************************************************************************************************* ",Input.Role);
+
+
                     //For teacher
                     // _userManager.AddToRoleAsync(user, "TEACHER").Wait();
                     //For admin
-                     //_userManager.AddToRoleAsync(user, "ADMIN").Wait();
+                    //_userManager.AddToRoleAsync(user, "ADMIN").Wait();
                     //For Student
-                    _userManager.AddToRoleAsync(user, "STUDENT").Wait();
+                    //_userManager.AddToRoleAsync(user, "STUDENT").Wait();
+                    if (Input.Role == "STUDENT")
+                    {
+                        await _userManager.AddToRoleAsync(user, "STUDENT");
+                    }
+                    else if (Input.Role == "TEACHER")
+                    {
+                        await _userManager.AddToRoleAsync(user, "TEACHER");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "ADMIN");
+                    }
+                   // await _userManager.AddToRoleAsync(user, Input.Role);
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

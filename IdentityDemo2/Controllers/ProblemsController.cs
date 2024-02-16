@@ -313,6 +313,17 @@ namespace IdentityDemo2.Controllers
 
 
         ////*** Bhagyesh working here ***////////////////////////////////////////////////////////////////
+        //public async Task<IActionResult> SeeResult(int contestId)
+        //{
+        //    // Retrieve problems for the specified contest including attempts made by students
+        //    var problemsWithAttempts = await _context.Problemes
+        //        .Include(p => p.Contest)
+        //        .ThenInclude(a => a.ApplicationUser) // Include user information for attempts
+        //        .Where(p => p.ContestId == contestId)
+        //        .ToListAsync();
+
+        //    return View(problemsWithAttempts);
+        //}
 
 
         ////*** Bhagyesh Completed ***////////////////////////////////////////////////////////////////////////////
