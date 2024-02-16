@@ -228,7 +228,7 @@ namespace IdentityDemo2.Controllers
             //adding to database
             _context.Add(contest);
             await _context.SaveChangesAsync();
-            return RedirectToAction("TeacherContestDetails");
+            return RedirectToAction("TeacherAllContests");
            
         }
 
