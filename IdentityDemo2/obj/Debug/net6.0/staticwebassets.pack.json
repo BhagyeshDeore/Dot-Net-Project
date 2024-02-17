@@ -1,6 +1,7 @@
 {
   "Files": [
     {
+<<<<<<< HEAD
       "Id": "C:\\Users\\rushi\\Desktop\\DOT NET\\DOT NET PROJECT\\DOT NET PROJECT FINAL\\Parikshak_dot_net\\IdentityDemo2\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\IdentityDemo2.bundle.scp.css",
       "PackagePath": "staticwebassets\\IdentityDemo2.bundle.scp.css"
     },
@@ -14,6 +15,21 @@
     },
     {
       "Id": "C:\\Users\\rushi\\Desktop\\DOT NET\\DOT NET PROJECT\\DOT NET PROJECT FINAL\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\bg-0.jpg",
+=======
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\IdentityDemo2.bundle.scp.css",
+      "PackagePath": "staticwebassets\\IdentityDemo2.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\bg-0.jpg",
+>>>>>>> 15931159a81a1eedd1c8571a0dd6340caaa60d7f
       "PackagePath": "staticwebassets\\images\\bg-0.jpg"
     },
     {
@@ -813,7 +829,11 @@
       "PackagePath": "staticwebassets\\twitter-bootstrap\\scss\\utilities\\_api.scss"
     },
     {
+<<<<<<< HEAD
       "Id": "C:\\Users\\rushi\\Desktop\\DOT NET\\DOT NET PROJECT\\DOT NET PROJECT FINAL\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\twitter-bootstrap\\scss\\vendor\\_rfs.scss",
+=======
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\twitter-bootstrap\\scss\\vendor\\_rfs.scss",
+>>>>>>> 15931159a81a1eedd1c8571a0dd6340caaa60d7f
       "PackagePath": "staticwebassets\\twitter-bootstrap\\scss\\vendor\\_rfs.scss"
     },
     {

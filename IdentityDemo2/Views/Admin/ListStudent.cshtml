@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<ApplicationUser>
 
-
 <div class="container mt-4">
     <h2 class="text-center">Student List</h2>
 
@@ -10,28 +9,44 @@
                 <th scope="col">Id</th>
                 <th scope="col">Email</th>
                 <th scope="col">First Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
                 <th scope="col">Update</th>
-
             </tr>
         </thead>
         <tbody>
-            @foreach (var studentUsers in Model)
+            @foreach (var studentUser in Model)
             {
                 <tr>
-                    <td>@studentUsers.Id</td>
-                    <td>@studentUsers.Email</td>
-                    <td>@studentUsers.Name</td>
+                    <td>@studentUser.Id</td>
+                    <td>@studentUser.Email</td>
+                    <td>@studentUser.Name</td>
+                    <td>@(studentUser.sTATUS == ACTIVATION_STATUS.ACTIVE ? "Active" : "Deactivate")</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@studentUsers.Id">
+                        @if (studentUser.sTATUS == ACTIVATION_STATUS.ACTIVE)
+                        {
+                            <form asp-action="ToggleStatusForStudent" asp-route-userId="@studentUser.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Deactivate
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="ToggleStatusForStudent" asp-route-userId="@studentUser.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    Activate
+                                </button>
+                            </form>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" asp-action="Update" asp-route-id="@studentUser.Id">
                             Update
                         </a>
                     </td>
                 </tr>
             }
+        </tbody>
     </table>
-
-
-    
 </div>
-
-
