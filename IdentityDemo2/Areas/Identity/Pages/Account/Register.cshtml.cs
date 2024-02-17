@@ -153,10 +153,10 @@ namespace IdentityDemo2.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, "TEACHER");
                     }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, "ADMIN");
-                    }
+                    //else if (Input.Role == "ADMIN")
+                    //{
+                    //    await _userManager.AddToRoleAsync(user, "ADMIN");
+                    //}
                    // await _userManager.AddToRoleAsync(user, Input.Role);
 
                     var userId = await _userManager.GetUserIdAsync(user);
