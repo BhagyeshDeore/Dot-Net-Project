@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NaKqIceG7VywU15bXcN1d4V90WZf2s83FikF2LwnQxE=",
+  "Hash": "q6PmEzOcxw9gX/7Pkab68dbBSRseuTaZDcPHIIxCD6k=",
   "Source": "IdentityDemo2",
   "BasePath": "_content/IdentityDemo2",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\.Net final Project\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\background.jpg",
+      "SourceId": "IdentityDemo2",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\.Net final Project\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\",
+      "BasePath": "_content/IdentityDemo2",
+      "RelativePath": "images/background.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\background.jpg"
     },
     {
       "Identity": "D:\\.Net final Project\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\bg-0.jpg",

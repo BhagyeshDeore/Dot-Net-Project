@@ -41,11 +41,14 @@ button.accept-policy[b-paotgjuuh4] {
 }
 
 .footer[b-paotgjuuh4] {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    white-space: nowrap;
+    line-height: 20px;
+    text-decoration-color: white;
+}
 }
 /* _content/IdentityDemo2/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
@@ -90,11 +93,14 @@ button.accept-policy[b-wqok7x90sd] {
 }
 
 .footer[b-wqok7x90sd] {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+     
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+     
+    padding: 10px 0; /* Adjust padding as needed */
+    
 }
 /* _content/IdentityDemo2/Views/Shared/_StudentLayout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
