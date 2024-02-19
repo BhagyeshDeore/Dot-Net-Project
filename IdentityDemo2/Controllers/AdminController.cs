@@ -89,6 +89,62 @@ namespace IdentityDemo2.Controllers
 
         ////*** Bhagyesh working here ***////////////////////////////////////////////////////////////////
 
+        [Authorize(Roles = "ADMIN")]
+        [HttpPost]
+        public async Task<IActionResult> ToggleStatusForTeacher(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            
+            user.sTATUS = user.sTATUS == ACTIVATION_STATUS.ACTIVE ? ACTIVATION_STATUS.DEACTIVE : ACTIVATION_STATUS.ACTIVE;
+
+            
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(ListTeacher));
+            }
+            else
+            {
+                
+                return View("Error");
+            }
+        }
+
+        [Authorize(Roles = "ADMIN")]
+        [HttpPost]
+        public async Task<IActionResult> ToggleStatusForStudent(string userId)
+        {
+            var studentUser = await _userManager.FindByIdAsync(userId);
+
+            if (studentUser == null)
+            {
+                return NotFound();
+            }
+
+            
+            studentUser.sTATUS = studentUser.sTATUS == ACTIVATION_STATUS.ACTIVE ? ACTIVATION_STATUS.DEACTIVE : ACTIVATION_STATUS.ACTIVE;
+
+            
+            var result = await _userManager.UpdateAsync(studentUser);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(ListStudent));
+            }
+            else
+            {
+               
+                return View("Error");
+            }
+        }
+
 
         ////*** Bhagyesh Completed ***////////////////////////////////////////////////////////////////////////////
 
@@ -121,7 +177,7 @@ namespace IdentityDemo2.Controllers
         [HttpGet]
         public IActionResult ListTeacher()
         {
-            // Assuming "TEACHER" is the role you want to filter by
+            
             var teacherUsers = _userManager.GetUsersInRoleAsync("TEACHER").Result;
 
             return View(teacherUsers);
@@ -131,7 +187,7 @@ namespace IdentityDemo2.Controllers
         [HttpGet]
         public IActionResult ListStudent()
         {
-            // Assuming "TEACHER" is the role you want to filter by
+            
             var studentUsers = _userManager.GetUsersInRoleAsync("STUDENT").Result;
 
             return View(studentUsers);
