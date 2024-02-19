@@ -123,6 +123,7 @@ namespace IdentityDemo2.Areas.Identity.Pages.Account
                 if (user.sTATUS == ACTIVATION_STATUS.DEACTIVE)
                 {
                     ModelState.AddModelError(string.Empty, "Your account is deactivated.");
+                    Console.WriteLine("account is deactivated");
                     return Page();
                 }
 
