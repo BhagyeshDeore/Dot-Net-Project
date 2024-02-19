@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+       
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #ccc;
+        }
+
+       
+        th {
+            background-color: #f2f2f2; 
+            border: 1px solid #ccc; 
+            padding: 8px; 
+        }
+      
+        td {
+            border: 1px solid #ccc; 
+            padding: 8px; 
+        }
+
+       
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9; 
+        }
+    </style>
+</head>
+<body>
+
+    @model List<IdentityDemo2.Models.Attempt>
+
+    <h2>Leaderboard</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Student Name</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                var attempt = Model[i];
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@attempt.ApplicationUser.Name</td>
+                    <td>@attempt.ObtainedMarks</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
