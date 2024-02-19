@@ -218,6 +218,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW1wdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Project_Dot-Net/Parikshak_dot_net/IdentityDemo2/Views/Attempts/Leaderboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW1wdHNcTGVhZGVyYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Project_Dot-Net/Parikshak_dot_net/IdentityDemo2/Views/Attempts/SeeAttempts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW1wdHNcU2VlQXR0ZW1wdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

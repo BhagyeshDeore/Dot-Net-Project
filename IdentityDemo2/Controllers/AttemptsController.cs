@@ -315,6 +315,45 @@ namespace IdentityDemo2.Controllers
             return View(attempts);
         }
 
+
+        //// tried but this logic written in ContestController , This is for future refrence.
+        
+        // GET: Attempt/Leaderboard
+        //public async Task<IActionResult> Leaderboard(int contestId)
+        //{
+        //    var attempts = await _context.Attempt
+        //        .Include(a => a.ApplicationUser)
+        //        .Where(a => a.ContestId == contestId)
+        //        .ToListAsync();
+
+        //    var leaderboard = attempts
+        //        .GroupBy(a => a.ApplicationUser)
+        //        .Select(g => new
+        //        {
+        //            StudentName = g.Key.UserName,
+        //            TotalMarks = g.Sum(a => a.ObtainedMarks)
+        //        })
+        //        .OrderByDescending(x => x.TotalMarks)
+        //        .ToList();
+
+        //    return PartialView("Leaderboard", leaderboard);
+        //}
+
+        
+        //public async Task<List<Attempt>> Leaderboard(int contestId)
+        //{
+        //    var leaderboardData = await _context.Attempt
+        //        .Include(a => a.ApplicationUser)
+        //        .Where(a => a.ContestId == contestId)
+        //        .OrderByDescending(a => a.ObtainedMarks)
+        //        .Take(10) 
+        //        .ToListAsync();
+
+        //    return leaderboardData;
+        //}
+
+
+
         ////*** Bhagyesh Completed ***////////////////////////////////////////////////////////////////////////////
 
 

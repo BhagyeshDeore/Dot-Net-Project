@@ -13,6 +13,34 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\DSA1.png",
+      "PackagePath": "staticwebassets\\images\\DSA1.png"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\Designer.jpg",
+      "PackagePath": "staticwebassets\\images\\Designer.jpg"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\EXC_Handling.jpg",
+      "PackagePath": "staticwebassets\\images\\EXC_Handling.jpg"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\Multithreading.jpg",
+      "PackagePath": "staticwebassets\\images\\Multithreading.jpg"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\OPPs.jpg",
+      "PackagePath": "staticwebassets\\images\\OPPs.jpg"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\String2.jpg",
+      "PackagePath": "staticwebassets\\images\\String2.jpg"
+    },
+    {
+      "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\background.jpg",
+      "PackagePath": "staticwebassets\\images\\background.jpg"
+    },
+    {
       "Id": "C:\\Project_Dot-Net\\Parikshak_dot_net\\IdentityDemo2\\wwwroot\\images\\bg-0.jpg",
       "PackagePath": "staticwebassets\\images\\bg-0.jpg"
     },
