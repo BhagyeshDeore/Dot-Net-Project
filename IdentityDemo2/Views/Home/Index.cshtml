@@ -81,7 +81,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <div class="header">
-            <h1>Welcome to <span class="highlight">Parikshak</span><strong>&nbsp;,&nbsp;@UserManager.GetUserName(User)</strong></h1>
+            <h1>Welcome to <span class="highlight">Parikshak</span><strong>&nbsp;,&nbsp;@User.Identity.Name</strong></h1>
             <p>Practice coding, prepare for Competitive Coding, and elevate your skills</p>
         </div>
     }
