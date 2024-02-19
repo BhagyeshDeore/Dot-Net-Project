@@ -1,6 +1,6 @@
 ﻿@model IdentityDemo2.Models.Attempt
 
-<div>
+<div style="display: flex; flex-direction: column;">
     @{
         var problem_id = Context.Request.Query["problemId"];
     }
@@ -11,20 +11,29 @@
                 <label asp-for="Code" class="control-label"></label>
                 <textarea asp-for="Code" class="form-control" id="javaCodeEditor">
                     </textarea>
+
                 <span asp-validation-for="Code" class="text-danger"></span>
             </div>
             
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
-            </div>
         </form>
+
+    <div class="" style="margin-top: 10px; align-self: flex-end;">
+        <input type="button" value="Submit" class="btn btn-primary" onclick="callCustomMethod()" />
+    </div>
+
+    <h4 id="submissionstatus"> temp value</h4>
+    <pre id="submissionoutput">
+        abcd
+    </pre>
 
     
 </div>
 
+
+@* //Not Required Back to List
 <div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div> *@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -39,26 +48,72 @@
 <script>
     var defaultJavaCode = 'public class Main {\n    public static void main(String[] args) {\n        // Your default Java code here\n    }\n}';
 
+    var javaCodeEditor;
+
     document.addEventListener("DOMContentLoaded", function () {
-        var javaCodeEditor = CodeMirror.fromTextArea(document.getElementById('javaCodeEditor'), {
+
+        var container = document.querySelector('.col-sm');
+        var initialHeight = 300;  // Adjust the initial height value as needed
+
+        javaCodeEditor = CodeMirror.fromTextArea(document.getElementById('javaCodeEditor'), {
             mode: 'text/x-java',
             theme: 'dracula', // Optional theme
             lineNumbers: true, // Show line numbers
             autofocus: true, // Automatically focus on the editor
         });
 
-        // Set an initial height (adjust as needed)
-        javaCodeEditor.setSize(null, "200px");
+        // Set the editor height explicitly
+        javaCodeEditor.setSize(null, initialHeight + 'px');
         javaCodeEditor.setValue(defaultJavaCode);
 
-        // Set the height of CodeMirror to 100% of its container
-        function setEditorHeight() {
-            var containerHeight = document.querySelector('.col-sm').offsetHeight;
-            javaCodeEditor.setSize(null, containerHeight + 'px');
-        }
+        
 
         // Call the function to set the height initially and whenever the window is resized
-        setEditorHeight();
+       
         window.addEventListener('resize', setEditorHeight);
     });
+
+    // Set the height of CodeMirror to 100% of its container
+    function setEditorHeight() {
+        var containerHeight = document.querySelector('.col-sm').offsetHeight;
+        javaCodeEditor.setSize(null, containerHeight + 'px');
+    }
+
+
+    function callCustomMethod() {
+        var javaCode = getCodeFromEditor();
+        var problemId = '@problem_id';
+
+        fetch(`/Attempts/AttemptSubmission?ProblemId=${problemId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ Code: javaCode })
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse the JSON response
+                } else {
+                    throw new Error('Error calling custom method');
+                }
+            })
+            .then(data => {
+                // Update the HTML elements with the received data
+                document.getElementById('submissionstatus').textContent = `Status: ${data.status}`;
+                document.getElementById('submissionoutput').textContent = `Message: ${data.message}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function getCodeFromEditor() {
+        // Function to get the code from the CodeMirror editor
+         // Use CodeMirror's API to get the value
+
+        return javaCodeEditor.getValue();
+    }
+
+
 </script>

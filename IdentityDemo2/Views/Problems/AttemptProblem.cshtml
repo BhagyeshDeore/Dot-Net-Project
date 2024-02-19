@@ -4,93 +4,172 @@
     ViewData["Title"] = "AttemptProblem";
 }
 
+<style>
+    /* Custom CSS styles */
+    .section {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .box {
+        display: inline-block;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .side-by-side {
+        display: flex;
+    }
+
+        .side-by-side .box {
+            flex: 1;
+            margin-right: 0;
+        }
+
+    /* Additional style for the partial view section */
+    .partial-view-container {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    #javaCodeEditor {
+        width: 100%;
+        height: 400px; /* Adjust the height as needed */
+    }
+
+    .submit-button {
+        margin-top: 10px;
+    }
+</style>
+
 <h1>AttemptProblem</h1>
 
-<div>
+<div class="section">
     <h4>Problem</h4>
     <hr />
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Title)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Title)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ProblemStatement)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ProblemStatement)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Explanation)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Explanation)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Marks)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Marks)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DifficultyLevel)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DifficultyLevel)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SampleInput)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SampleInput)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SampleOutput)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SampleOutput)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Testcase)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Testcase)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ResultOfTestCase)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ResultOfTestCase)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SolutionCode)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SolutionCode)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Contest)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Contest.Id)
-                </dd>
+                <div class="box title">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+                </div>
+
+                <div class="box description">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                </div>
+
+                <div class="box description">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ProblemStatement)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ProblemStatement)
+                    </dd>
+                </div>
+
+                <div class="box description">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Explanation)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Explanation)
+                    </dd>
+                </div>
+
+                <div class="box side-by-side">
+                    <div class="col-sm-6">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Marks)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Marks)
+                        </dd>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.DifficultyLevel)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.DifficultyLevel)
+                        </dd>
+                    </div>
+                </div>
+
+                <!-- Add similar boxes for other sections -->
+
+                <div class="box side-by-side">
+                    <div class="col-sm-6">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.SampleInput)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.SampleInput)
+                        </dd>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.SampleOutput)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.SampleOutput)
+                        </dd>
+                    </div>
+                </div>
+
+                <div class="box side-by-side">
+                    <div class="col-sm-6">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Testcase)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Testcase)
+                        </dd>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ResultOfTestCase)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ResultOfTestCase)
+                        </dd>
+                    </div>
+                </div>
+
+                <!-- Add similar boxes for other sections -->
             </div>
 
             <div class="col-sm">
-                @{
-                    Html.RenderPartial("attemptproblem_partial_", Model.attempt.FirstOrDefault());
-
-                }
+                <div class="partial-view-container">
+                    @{
+                        Html.RenderPartial("attemptproblem_partial_", Model.attempt.FirstOrDefault());
+                    }
+                </div>
             </div>
         </div>
     </div>
