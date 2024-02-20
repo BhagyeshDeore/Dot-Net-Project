@@ -67,6 +67,10 @@
             <div class="row">
                 @foreach (var item in Model)
                 {
+                    // Check if the problem has been attempted by the user
+                    var attemptedProblem = ViewData["AlreadyAttempted"] as List<Attempt>;
+                    var isProblemAttempted = attemptedProblem.Any(a => a.ProblemId == item.Id);
+
                     <div class="col-md-12">
                         <div class="card mb-4 difficulty-filter-card" data-difficulty="@Html.DisplayFor(modelItem => item.DifficultyLevel)">
                             <div class="card-body">
@@ -75,8 +79,17 @@
                                     <strong>Difficulty:</strong> @Html.DisplayFor(modelItem => item.DifficultyLevel) <br />
                                     <strong>Marks:</strong> @Html.DisplayFor(modelItem => item.Marks)
                                 </p>
-                                <a asp-controller="Problems" asp-action="AttemptProblem" asp-route-problemId="@item.Id" class="btn btn-info">Attempt</a>
-                            </div>
+                                @if (isProblemAttempted)
+                                {
+                                    <span class="btn btn-success">Solved</span> <!-- Display "Solved" text -->
+                                }
+                                else
+                                {
+                                    <a asp-controller="Problems" asp-action="AttemptProblem" asp-route-problemId="@item.Id" class="btn btn-info">Attempt</a> <!-- Display "Attempt" button -->
+                                }
+                                
+@*                                 <a asp-controller="Problems" asp-action="AttemptProblem" asp-route-problemId="@item.Id" class="btn btn-info">Attempt</a>
+ *@                            </div>
                         </div>
                     </div>
                 }

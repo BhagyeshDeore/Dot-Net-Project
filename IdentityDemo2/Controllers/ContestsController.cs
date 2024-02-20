@@ -356,6 +356,7 @@ namespace IdentityDemo2.Controllers
         [Authorize(Roles = "STUDENT")]
         public async Task<IActionResult> ProblemsForContest(int contestId)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var contest = await _context.Contestes
                 .Include(c => c.ApplicationUser)
                 .FirstOrDefaultAsync(m => m.Id == contestId);
@@ -382,10 +383,16 @@ namespace IdentityDemo2.Controllers
              .Take(10)
              .ToListAsync();
 
+            var alreadyAttemptOnProblems = await _context.Attempt
+                .Where(a => a.ContestId == contestId)
+                .Where(a => a.ApplicationUserId == userId )
+                .ToListAsync();
+
 
             ViewData["ContestNumber"] = contest.Id;
             ViewData["ContestTitle"] = contest.Title;
             ViewData["LeaderboardData"] = leaderboardData;
+            ViewData["AlreadyAttempted"] = alreadyAttemptOnProblems;
             return View(problemsForContest);
         }
 

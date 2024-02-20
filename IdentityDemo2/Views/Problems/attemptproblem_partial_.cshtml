@@ -18,13 +18,13 @@
         </form>
 
     <div class="" style="margin-top: 10px; align-self: flex-end;">
-        <input type="button" value="Submit" class="btn btn-primary" onclick="callCustomMethod()" />
+        <input type="button" value="Submit" id="submitButton" class="btn btn-primary" onclick="callCustomMethod()" />
+        <div id="loadingSpinner" style="display: none;">Loading...</div>
+
     </div>
 
-    <h4 id="submissionstatus"> temp value</h4>
-    <pre id="submissionoutput">
-        abcd
-    </pre>
+    <h4 id="submissionstatus"></h4>
+    <pre id="submissionoutput"></pre>
 
     
 </div>
@@ -46,8 +46,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/clike/clike.min.js"></script>
 <!-- Initialize CodeMirror on your input field -->
 <script>
-    var defaultJavaCode = 'public class Main {\n    public static void main(String[] args) {\n        // Your default Java code here\n    }\n}';
-
+    var defaultJavaCode = 'import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n           Scanner sc = new Scanner(System.in);\n        // Your default Java code here\n    }\n}';
+   
     var javaCodeEditor;
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -84,6 +84,9 @@
         var javaCode = getCodeFromEditor();
         var problemId = '@problem_id';
 
+        document.getElementById('submitButton').disabled = true;
+        document.getElementById('loadingSpinner').style.display = 'block';
+
         fetch(`/Attempts/AttemptSubmission?ProblemId=${problemId}`, {
             method: 'POST',
             headers: {
@@ -101,10 +104,19 @@
             .then(data => {
                 // Update the HTML elements with the received data
                 document.getElementById('submissionstatus').textContent = `Status: ${data.status}`;
-                document.getElementById('submissionoutput').textContent = `Message: ${data.message}`;
+                document.getElementById('submissionoutput').textContent = `Output: ${data.message}`;
+
+                // Enable the submit button and hide loading spinner
+                if (data.status != "Submitted : Sample Testcases and Hidden Testcases passed")
+                    document.getElementById('submitButton').disabled = false;
+                document.getElementById('loadingSpinner').style.display = 'none';
             })
             .catch(error => {
                 console.error('Error:', error);
+
+                // Enable the submit button and hide loading spinner
+                document.getElementById('submitButton').disabled = false;
+                document.getElementById('loadingSpinner').style.display = 'none';
             });
     }
 

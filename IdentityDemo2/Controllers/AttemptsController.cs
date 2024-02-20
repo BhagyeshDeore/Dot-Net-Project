@@ -14,6 +14,9 @@ using Newtonsoft.Json;
 using System.Text;
 using Newtonsoft.Json;
 using IdentityDemo2.DTOs;
+using NuGet.Protocol;
+using Newtonsoft.Json.Linq;
+
 
 namespace IdentityDemo2.Controllers
 {
@@ -256,27 +259,227 @@ namespace IdentityDemo2.Controllers
              return RedirectToAction(nameof(Index));
          }*/
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> attemptproblem_partial_([Bind("Code")] Attempt attempt, int ProblemId)
+        //{
+        //    attempt.Language = CodingLanguage.JAVA;
+        //    attempt.SolvedStatus = SolvedStatus.Solved;
+        //    attempt.Result = "PASS";
+        //    attempt.ObtainedMarks = 10;
+        //    attempt.ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var problem = _context.Problemes.Find(ProblemId);
+        //    attempt.ContestId = problem.ContestId;
+        //    attempt.ProblemId = ProblemId;
+
+        //    Console.WriteLine("Submitted problem id  : " + attempt.ProblemId + " contest id " + attempt.ContestId);
+        //    Console.WriteLine("Submitted  for user  id: " + attempt.ApplicationUserId);
+
+        //    // Print the actual content of attempt.Code to the console for debugging
+        //    Console.WriteLine($"Code to be submitted:\n{attempt.Code}");
+
+        //    string input = problem.SampleInput;
+
+        //    // Prepare data in the required JSON structure for the external API
+        //    var requestData = new
+        //    {
+        //        language = "java",
+        //        stdin = input,
+        //        files = new[]
+        //        {
+        //            new
+        //            {
+        //                name = "Main.java",
+        //                content = attempt.Code
+        //            }
+        //        }
+        //    };
+
+        //    // Convert the request data to JSON
+        //    string jsonData = JsonConvert.SerializeObject(requestData);
+
+        //    // Print the request data to the console
+        //    Console.WriteLine($"Request Data:\n{jsonData}");
+
+        //    // Set the API endpoint URL
+        //    string apiUrl = "https://onecompiler-apis.p.rapidapi.com/api/v1/run";
+
+        //    try
+        //    {
+        //        using (HttpClient client = new HttpClient())
+        //        {
+        //            // Set the necessary headers for the external API
+        //            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "47124e78c3msh49b2a0bec47e7dap1a5bd0jsne5bde89a75f5");
+        //            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "onecompiler-apis.p.rapidapi.com");
+
+        //            // Send a POST request
+        //            HttpResponseMessage response = await client.PostAsync(apiUrl, new StringContent(jsonData, Encoding.UTF8, "application/json"));
+
+        //            // Print the response status code to the console
+        //            Console.WriteLine($"Response Status Code: {response.StatusCode}");
+
+        //            // Check the response
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                // Successful request, handle the response
+        //                string responseData = await response.Content.ReadAsStringAsync();
+        //                // Print the response data to the console
+        //                Console.WriteLine($"Response Data:\n{responseData}");
+
+        //                // Assuming you want to return some data to the client
+        //                return RedirectToAction();
+        //            }
+        //            else
+        //            {
+        //                // Handle error
+        //                string errorResponse = await response.Content.ReadAsStringAsync();
+        //                // Print the error response to the console
+        //                Console.WriteLine($"Error Response:\n{errorResponse}");
+
+        //                return BadRequest($"Error: {response.StatusCode}");
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exception
+        //        Console.WriteLine($"Exception: {ex.Message}");
+        //        return StatusCode(500, $"Internal Server Error: {ex.Message}");
+        //    }
+        //}
+
+        //POST: 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> attemptproblem_partial_([Bind("Code")] Attempt attempt, int ProblemId)
+        public async Task<IActionResult> attemptproblemCode()
         {
-            attempt.Language = CodingLanguage.JAVA;
-            attempt.SolvedStatus = SolvedStatus.Solved;
-            attempt.Result = "PASS";
-            attempt.ObtainedMarks = 10;
-            attempt.ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var problem = _context.Problemes.Find(ProblemId);
-            attempt.ContestId = problem.ContestId;
-            attempt.ProblemId = ProblemId;
+            Console.WriteLine("Hello from attempt");
 
-            Console.WriteLine("Submitted problem id  : " + attempt.ProblemId + " contest id " + attempt.ContestId);
-            Console.WriteLine("Submitted  for user  id: " + attempt.ApplicationUserId);
+            return View();
+        }
 
-            // Print the actual content of attempt.Code to the console for debugging
-            Console.WriteLine($"Code to be submitted:\n{attempt.Code}");
+        public class CodeModel
+        {
+            public string Code { get; set; }
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> AttemptSubmission(int problemId, [FromBody] CodeModel model)
+        {
+            // Access model.Code for the code data
+            var problem = _context.Problemes.Find(problemId);
             string input = problem.SampleInput;
+            string expectedOutput = problem.SampleOutput; // ex
 
+            // Call ExecuteCode and await the result
+            string response = await ExecuteCode(model.Code, input);
+            Console.WriteLine("response from excute code :");
+            Console.WriteLine(response);
+
+            var result = new
+            {
+                Status = "Network Failure or Internal Server error",
+                Message = "Try again later!!" 
+            };
+
+            try
+            {
+                
+                // Deserialize the JSON string into an instance of ExecutionResponse
+                ExecutionResponse executionResponse = JsonConvert.DeserializeObject<ExecutionResponse>(response);
+                Console.WriteLine(executionResponse.ToString);
+
+                if(executionResponse.Stderr != null )
+                {
+                    result = new
+                    {
+                        Status = "Compilation Error",
+                        Message = executionResponse.Stderr
+
+                    };
+
+                }
+                else if(executionResponse.Exception != null)
+                 {
+
+                    result = new
+                    {
+                        Status = "Runtime Exception Occured",
+                        Message = executionResponse.Exception 
+
+                    };
+
+                }
+                else
+                {
+                    result = new
+                    {
+                        Status = "Executed but Sample Testcases failed",
+                        Message = executionResponse.Stdout
+
+                    };
+                    //sample output checking
+                    if (checkSampleOutput(expectedOutput, executionResponse.Stdout)) {
+                        result = new
+                        {
+                            Status = "Success : Sample Testcases passed but Hidden testcases failed",
+                            Message = executionResponse.Stdout
+
+                        };
+                        string responseTestcases = await ExecuteCode(model.Code, problem.Testcase);
+                        try
+                        {
+
+                            // Deserialize the JSON string into an instance of ExecutionResponse
+                            ExecutionResponse executionResponseTestCases = JsonConvert.DeserializeObject<ExecutionResponse>(responseTestcases);
+                            if (executionResponseTestCases.Stdout != null && checkSampleOutput( problem.ResultOfTestCase, executionResponseTestCases.Stdout)) {
+                                
+                                result = new
+                                {
+                                    Status = "Submitted : Sample Testcases and Hidden Testcases passed",
+                                    Message = executionResponse.Stdout
+
+                                };
+
+                                Attempt attempt = new Attempt();
+                                attempt.Code = model.Code;
+                                attempt.Language = CodingLanguage.JAVA;
+                                attempt.SolvedStatus = SolvedStatus.Solved;
+                                attempt.Result = "PASS";
+                                attempt.ObtainedMarks = problem.Marks;
+                                attempt.ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                                attempt.ContestId = problem.ContestId;
+                                attempt.ProblemId = problemId;
+                                Console.WriteLine("Submitted problem id  : " + attempt.ProblemId + " contest id " + attempt.ContestId);
+                                Console.WriteLine("Submitted  for user  id: " + attempt.ApplicationUserId);
+
+                                await createAttempt(attempt);
+
+
+                            }
+                        }
+                        catch (JsonException ex)
+                        {
+                            // Handle the exception if the string is not a valid JSON
+                            Console.WriteLine($"Error parsing JSON: {ex.Message}");
+                        }
+
+                    }
+                   
+                }
+
+            }
+            catch (JsonException ex)
+            {
+                // Handle the exception if the string is not a valid JSON
+                Console.WriteLine($"Error parsing JSON: {ex.Message}");
+            }
+
+            Console.WriteLine("returning Custom Method Result: " + result);
+            return Ok(result);
+        }
+        //System.out.pritnln("hello");
+        public async Task<string> ExecuteCode(string Code, string input)
+        {
             // Prepare data in the required JSON structure for the external API
             var requestData = new
             {
@@ -287,7 +490,7 @@ namespace IdentityDemo2.Controllers
                     new
                     {
                         name = "Main.java",
-                        content = attempt.Code
+                        content = Code
                     }
                 }
             };
@@ -318,243 +521,38 @@ namespace IdentityDemo2.Controllers
                     // Check the response
                     if (response.IsSuccessStatusCode)
                     {
-                        // Successful request, handle the response
+                        // Read the response content as a string
                         string responseData = await response.Content.ReadAsStringAsync();
-                        // Print the response data to the console
-                        Console.WriteLine($"Response Data:\n{responseData}");
-
-                        // Assuming you want to return some data to the client
-                        return RedirectToAction();
+                        Console.WriteLine("**********");
+                        Console.WriteLine(responseData);
+                        return responseData;
                     }
                     else
                     {
-                        // Handle error
-                        string errorResponse = await response.Content.ReadAsStringAsync();
-                        // Print the error response to the console
-                        Console.WriteLine($"Error Response:\n{errorResponse}");
-
-                        return BadRequest($"Error: {response.StatusCode}");
+                        // Handle unsuccessful response
+                        string errorMessage = $"HTTP request failed with status code: {response.StatusCode}";
+                        Console.WriteLine(errorMessage);
+                        throw new Exception(errorMessage); // Throw an exception or return a default value
                     }
+
                 }
             }
             catch (Exception ex)
             {
                 // Handle exception
                 Console.WriteLine($"Exception: {ex.Message}");
-                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+                return "Internal Server Error: "+ex.Message;
             }
         }
 
-        //POST: 
-        [HttpPost]
-        public async Task<IActionResult> attemptproblemCode()
-        {
-            Console.WriteLine("Hello from attempt");
-
-            return View();
+        public Boolean checkSampleOutput( String sampleOutput, String Codeoutput) { 
+            return sampleOutput.Trim() == Codeoutput.Trim();
         }
 
-        /*[HttpPost]
-        public IActionResult AttemptSubmission([Bind("Code")] Attempt attempt, int ProblemId)
-        {
-            // Process the codeModel and problemId as needed
-            // You can replace AttemptCodeModel with your actual model class
-
-            // For demonstration purposes, creating a simple JSON object
-            var result = new
-            {
-                Status = "Success",
-                Message = "Custom method called successfully",
-                ProblemId = ProblemId,
-                Code = attempt.Code
-            };
-
-            Console.WriteLine( "Custome Method Result :" + result);
-
-            // Return the JSON object
-            return Json(result);
-        }*/
-
-        public class CodeModel
-        {
-            public string Code { get; set; }
+        public async Task createAttempt( Attempt attempt) {
+            _context.Add(attempt);
+            await _context.SaveChangesAsync();
         }
-
-        [HttpPost]
-        public async Task<IActionResult> AttemptSubmission(int problemId, [FromBody] CodeModel model)
-        {
-            // Access model.Code for the code data
-            Attempt attempt = new Attempt();
-            attempt.Code = model.Code;
-
-            //////
-            attempt.Language = CodingLanguage.JAVA;
-            attempt.SolvedStatus = SolvedStatus.Solved;
-            attempt.Result = "PASS";
-            attempt.ObtainedMarks = 10;
-            attempt.ApplicationUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var problem = _context.Problemes.Find(problemId);
-            attempt.ContestId = problem.ContestId;
-            attempt.ProblemId = problemId;
-            string input = problem.SampleInput;
-            string expectedOutput = problem.SampleOutput; // ex
-
-            Console.WriteLine("Submitted problem id  : " + attempt.ProblemId + " contest id " + attempt.ContestId);
-            Console.WriteLine("Submitted  for user  id: " + attempt.ApplicationUserId);
-
-            // Print the actual content of attempt.Code to the console for debugging
-            Console.WriteLine($"Code to be submitted:\n{attempt.Code}");
-            ///////
-            ///
-
-            // Call ExecuteCode and await the result
-            ActionResult<string> response = await ExecuteCode(attempt.Code, input);
-
-            var result = new
-            {
-                Status = "",
-                Message = "", //stdoutput
-
-            };
-
-            try
-            {
-                
-                // Deserialize the JSON string into an instance of ExecutionResponse
-                ExecutionResponse executionResponse = JsonConvert.DeserializeObject<ExecutionResponse>(response.ToString());
-
-                if(executionResponse.Stderr != null )
-                {
-                    result = new
-                    {
-                        Status = "Compilation Error",
-                        Message = executionResponse.Stderr
-
-                    };
-
-                }
-                else if(executionResponse.Exception != null)
-                 {
-
-                    result = new
-                    {
-                        Status = "Runtime Exception Occured",
-                        Message = executionResponse.Exception 
-
-                    };
-
-                }
-                else
-                {
-                    result = new
-                    {
-                        Status = "Success",
-                        Message = executionResponse.Stdout
-
-                    };
-                }
-
-                // Now you can access the properties of executionResponse
-                
-                // ... and so on
-
-            }
-            catch (JsonException ex)
-            {
-                // Handle the exception if the string is not a valid JSON
-                Console.WriteLine($"Error parsing JSON: {ex.Message}");
-            }
-
-            Console.WriteLine(response.ToString());
-
-
-            
-
-            Console.WriteLine("Custom Method Result: " + result);
-
-            return Ok(result);
-        }
-
-        public async Task<ActionResult<string>> ExecuteCode(string Code, string input)
-{
-    // Prepare data in the required JSON structure for the external API
-    var requestData = new
-    {
-        language = "java",
-        stdin = input,
-        files = new[]
-        {
-            new
-            {
-                name = "Main.java",
-                content = Code
-            }
-        }
-    };
-
-    // Convert the request data to JSON
-    string jsonData = JsonConvert.SerializeObject(requestData);
-
-    // Print the request data to the console
-    Console.WriteLine($"Request Data:\n{jsonData}");
-
-    // Set the API endpoint URL
-    string apiUrl = "https://onecompiler-apis.p.rapidapi.com/api/v1/run";
-
-    try
-    {
-        using (HttpClient client = new HttpClient())
-        {
-            // Set the necessary headers for the external API
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "47124e78c3msh49b2a0bec47e7dap1a5bd0jsne5bde89a75f5");
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "onecompiler-apis.p.rapidapi.com");
-
-            // Send a POST request
-            HttpResponseMessage response = await client.PostAsync(apiUrl, new StringContent(jsonData, Encoding.UTF8, "application/json"));
-
-            // Print the response status code to the console
-            Console.WriteLine($"Response Status Code: {response.StatusCode}");
-
-            // Check the response
-            if (response.IsSuccessStatusCode)
-            {
-                // Successful request, handle the response
-                string responseData = await response.Content.ReadAsStringAsync();
-                // Print the response data to the console
-                Console.WriteLine($"Response Data:\n{responseData}");
-
-                // Deserialize the JSON directly into ExecutionResponse
-                ExecutionResponse executionResponse = JsonConvert.DeserializeObject<ExecutionResponse>(responseData);
-
-                // Check if there was an exception
-                if (executionResponse.Exception != null)
-                {
-                    // Handle the exception
-                    Console.WriteLine($"Exception occurred: {executionResponse.Exception}");
-                    return BadRequest($"Error: {executionResponse.Exception}");
-                }
-
-                // Assuming you want to return some data to the client
-                return Ok(executionResponse.Stdout);
-            }
-            else
-            {
-                // Handle error
-                string errorResponse = await response.Content.ReadAsStringAsync();
-                // Print the error response to the console
-                Console.WriteLine($"Error Response:\n{errorResponse}");
-
-                return BadRequest($"Error: {response.StatusCode}");
-            }
-        }
-    }
-    catch (Exception ex)
-    {
-        // Handle exception
-        Console.WriteLine($"Exception: {ex.Message}");
-        return StatusCode(500, $"Internal Server Error: {ex.Message}");
-    }
-}
     
 
 
