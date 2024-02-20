@@ -44,3 +44,26 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+
+
+
+//viraj passwords
+
+//admin
+//admin1@gmail.com
+//Admin@123
+
+//student1
+//virajtandel72@gmail.com
+//Viraj@123
+
+//teacher 1
+//kiran123@gmail.com
+//Teacher@123
+
+//teacher2
+//aditya123@gmail.com
+//Teacher@123
+
+
