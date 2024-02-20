@@ -369,11 +369,26 @@ namespace IdentityDemo2.Controllers
                 .Where(p => p.ContestId == contestId)
                 .ToListAsync();
 
-            // Set contest details in ViewData
+            var leaderboardData = await _context.Attempt
+             .Include(a => a.ApplicationUser)
+             .Where(a => a.ContestId == contestId)
+             .GroupBy(a => a.ApplicationUser)
+             .Select(g => new Attempt
+             {
+                 ApplicationUser = g.Key,
+                 ObtainedMarks = g.Sum(a => _context.Problemes.FirstOrDefault(p => p.Id == a.ProblemId).Marks)
+             })
+             .OrderByDescending(a => a.ObtainedMarks)
+             .Take(10)
+             .ToListAsync();
+
+
             ViewData["ContestNumber"] = contest.Id;
-            ViewData["ContestTitle"] = contest.Title; // Pass the contest title to the view
+            ViewData["ContestTitle"] = contest.Title;
+            ViewData["LeaderboardData"] = leaderboardData;
             return View(problemsForContest);
         }
+
 
         ////*** Rushikesh Completed ***////////////////////////////////////////////////////////////////
 
@@ -392,6 +407,7 @@ namespace IdentityDemo2.Controllers
 
         ////*** Bhagyesh working here ***////////////////////////////////////////////////////////////////
 
+        //// Done all work in teammate's area
 
         ////*** Bhagyesh Completed ***////////////////////////////////////////////////////////////////////////////
 
